@@ -1,48 +1,12 @@
 import './Sidebar.css'
 import React, { useState, useEffect } from 'react'
 import { isExpired, decodeToken } from 'react-jwt'
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-}
-
-function setCookie(cname, cvalue, exhours) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exhours*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+import { getCookie, setCookie } from '../libraries/Cookie'
 
 function Sidebar(props) {
-    const [logged, setLogged] = useState(false)
+    const [logged, setLogged] = useState(getCookie("jwt"))
     const [login_button_text, setLoginButtonText] = useState("Zaloguj")
-
-        // setLogged(() => {
-        //     const jwt = getCookie("jwt")
-        //     if (jwt == "") return false
-
-        //     fetch("https://projekt-pp-backend.herokuapp.com/authorities", {
-        //         credentials: 'same-origin',
-        //         headers: {
-        //             'Authorization': `Bearer $jwt`
-        //         }
-        //     }).then((response) => {
-        //         if (response.status === 200) return true
-        //         return false
-        //     })
-        // })
+    const username = ((logged) ? decodeToken(getCookie("jwt")).sub : "unknown")
 
     const logout = () => {
         setCookie("jwt", "", -1)
@@ -84,7 +48,7 @@ function Sidebar(props) {
                 if (props.page != props.PageEnum.register) {
                     if (logged) return (
                         <div id="login_form">
-                            <p>@{"nazwa_użytkownika" /* TODO */}</p>
+                            <p>@{username}</p>
                             <button type="button" onClick={logout}>Wyloguj</button>
                         </div>
                     ) 
@@ -99,13 +63,13 @@ function Sidebar(props) {
                 }
             })()}
             <input type="text" id="search_form" placeholder="wyszukaj" />
-            <button type="button" class="wide_button">Najpopularniejsze wątki</button>
+            <button type="button" className="wide_button">Najpopularniejsze wątki</button>
             <ul>
                 <li>Wątek 1</li>
                 <li>Wątek 2</li>
                 <li>Wątek 3</li>
             </ul>
-            <button type="button" class="wide_button">Dodaj wątek</button>
+            <button type="button" className="wide_button">Dodaj wątek</button>
         </div>
     )
 }

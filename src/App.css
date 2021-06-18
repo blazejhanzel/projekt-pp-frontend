@@ -38,3 +38,17 @@ input {
     color: #ffec5a;
     background-color: #656565;
 }
+
+.item {
+    width: calc(100% - 60px);
+    height: 54px;
+    padding: 8px 12px;
+    margin: 8px 30px 8px 30px;
+    display: inline-block;
+    border: 0px solid #ccc;
+    border-radius: 14px;
+    box-sizing: border-box;
+    font-size: 26px;
+    color: #ffec5a;
+    background-color: #656565;
+}
