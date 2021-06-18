@@ -16,6 +16,20 @@
             "runtimeArgs": [
                 "start"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Deploy website",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "deploy"
+            ]
         }
     ]
 }
