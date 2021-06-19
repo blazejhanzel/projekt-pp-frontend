@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 
 function Post(props) {
     const getDate = () => {
-        return (
-            props.createDate.slice(0, 19).replace('T', ' ')
-        )
+        return props.createDate.slice(0, 19).replace('T', ' ')
     }
 
     return (

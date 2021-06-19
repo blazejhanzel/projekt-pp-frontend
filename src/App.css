@@ -41,7 +41,7 @@ input {
 
 .item {
     width: calc(100% - 60px);
-    height: 54px;
+    min-height: 54px;
     padding: 8px 12px;
     margin: 8px 30px 8px 30px;
     display: inline-block;
@@ -75,7 +75,7 @@ input {
     background-color: #656565;
 }
 
-.post > .username {
+.username {
     font-size: 16px;
     font-weight: bold;
 }
@@ -84,5 +84,10 @@ input {
     font-size: 10px;
     margin-left: 16px;
     margin-bottom: 8px;
+    font-weight: normal!important;
+}
+
+.item > .info {
+    font-size: 14px!important;
     font-weight: normal!important;
 }

@@ -41,7 +41,7 @@ function Topics(props) {
             </div>
             <div className="threads">
                 <div onClick={closeThread}>
-                    <Item title={props.threadName} />
+                    <Item title={props.threadName} description={props.threadDescription} author={props.threadAuthor} />
                 </div>
                 <div className="topics">
                     {topics}

@@ -22,6 +22,8 @@ function Threads(props) {
             if (res.status == 200) {
                 props.setPage(props.PageEnum.thread)
                 props.setThreadName(data.title)
+                props.setThreadDescription(data.description)
+                props.setThreadAuthor(data.author.login)
             }
         }))
     }
@@ -38,7 +40,11 @@ function Threads(props) {
             if (res.status == 200) {
                 let result = []
                 for (let thread of data) {
-                    result.push(<div onClick={() => openThread(thread.id)}><Item title={thread.title} closeSection={closeSection} /></div>)
+                    result.push(
+                        <div onClick={() => openThread(thread.id)}>
+                            <Item title={thread.title} closeSection={closeSection} description={thread.description} author={thread.author.login} />
+                        </div>
+                        )
                 }
                 setThreads(result)
             }

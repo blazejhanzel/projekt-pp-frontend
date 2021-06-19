@@ -20,6 +20,8 @@ function App() {
   const [page, setPage] = useState(PageEnum.heroku_wait)
   const [sectionName, setSectionName] = useState("Wczytywanie...")
   const [threadName, setThreadName] = useState("Wczytywanie...")
+  const [threadDescription, setThreadDescription] = useState("Wczytywnanie...")
+  const [threadAuthor, setThreadAuthor] = useState("Wczytywanie...")
 
   return (
     <div id="app">
@@ -36,10 +38,12 @@ function App() {
                 return <RegisterForm />
               case PageEnum.section:
                 return <Threads setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
-                  setSectionName={setSectionName} setThreadName={setThreadName} />
+                  setSectionName={setSectionName} setThreadName={setThreadName} setThreadDescription={setThreadDescription}
+                  setThreadAuthor={setThreadAuthor} />
               case PageEnum.thread:
                 return <Posts setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
-                  setSectionName={setSectionName} threadName={threadName} />
+                  setSectionName={setSectionName} threadName={threadName} threadDescription={threadDescription}
+                  threadAuthor={threadAuthor} />
               case PageEnum.add_thread:
                 return
             }
