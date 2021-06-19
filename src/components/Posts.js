@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Item from './Item'
+import Post from './Post'
 import { getCookie } from '../libraries/Cookie'
 
 function Topics(props) {
@@ -15,7 +16,7 @@ function Topics(props) {
     }
 
     useEffect(() => {
-        fetch("https://projekt-pp-backend.herokuapp.com/topic", {
+        fetch("https://projekt-pp-backend.herokuapp.com/post", {
             method: 'GET',
             credentials: 'same-origin',
             headers: {
@@ -25,10 +26,10 @@ function Topics(props) {
         }).then(res => res.json().then(data => {
             if (res.status == 200) {
                 let result = []
-                for (let thread of data) {
-                    result.push(<div onClick={() => openThread(thread.id)}><Item title={thread.title} closeSection={closeSection} /></div>)
+                for (let post of data) {
+                    result.push(<Post title={post.text} author={post.author.login} createDate={post.createDate} />)
                 }
-                setThreads(result)
+                setTopics(result)
             }
         }))
     }, [])

@@ -1,11 +1,11 @@
 import './App.css'
 import React, { useState } from 'react'
 import HerokuWait from './components/HerokuWait'
+import Posts from './components/Posts'
 import RegisterForm from './components/RegisterForm'
 import Sections from './components/Sections'
 import Sidebar from './components/Sidebar'
 import Threads from './components/Threads'
-import Topics from './components/Topics'
 
 function App() {
   const PageEnum = Object.freeze({
@@ -38,7 +38,7 @@ function App() {
                 return <Threads setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
                   setSectionName={setSectionName} setThreadName={setThreadName} />
               case PageEnum.thread:
-                return <Topics setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
+                return <Posts setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
                   setSectionName={setSectionName} threadName={threadName} />
               case PageEnum.add_thread:
                 return
