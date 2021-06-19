@@ -1,5 +1,6 @@
 import './App.css'
 import React, { useState } from 'react'
+import AddThreadForm from './components/AddThreadForm'
 import HerokuWait from './components/HerokuWait'
 import Posts from './components/Posts'
 import RegisterForm from './components/RegisterForm'
@@ -20,7 +21,7 @@ function App() {
   const [page, setPage] = useState(PageEnum.heroku_wait)
   const [sectionName, setSectionName] = useState("Wczytywanie...")
   const [threadName, setThreadName] = useState("Wczytywanie...")
-  const [threadDescription, setThreadDescription] = useState("Wczytywnanie...")
+  const [threadDescription, setThreadDescription] = useState("Wczytywanie...")
   const [threadAuthor, setThreadAuthor] = useState("Wczytywanie...")
 
   return (
@@ -45,7 +46,7 @@ function App() {
                   setSectionName={setSectionName} threadName={threadName} threadDescription={threadDescription}
                   threadAuthor={threadAuthor} />
               case PageEnum.add_thread:
-                return
+                return <AddThreadForm />
             }
           })()
         }

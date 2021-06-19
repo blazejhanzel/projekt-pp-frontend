@@ -13,6 +13,10 @@ function Sidebar(props) {
         document.location.reload()
     }
 
+    const openAddThreadForm = () => {
+        props.setPage(props.PageEnum.add_thread)
+    }
+
     const openRegisterPage = () => {
         props.setPage(props.PageEnum.register)
     }
@@ -69,7 +73,7 @@ function Sidebar(props) {
                 <li>Wątek 2</li>
                 <li>Wątek 3</li>
             </ul>
-            <button type="button" className="wide_button">Dodaj wątek</button>
+            <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
         </div>
     )
 }
