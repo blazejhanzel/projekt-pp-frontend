@@ -5,6 +5,7 @@ import RegisterForm from './components/RegisterForm'
 import Sections from './components/Sections'
 import Sidebar from './components/Sidebar'
 import Threads from './components/Threads'
+import Topics from './components/Topics'
 
 function App() {
   const PageEnum = Object.freeze({
@@ -17,8 +18,8 @@ function App() {
   })
 
   const [page, setPage] = useState(PageEnum.heroku_wait)
-  const [itemId, setItemId] = useState(0)
-  const [itemName, setItemName] = useState("Wczytywanie...")
+  const [sectionName, setSectionName] = useState("Wczytywanie...")
+  const [threadName, setThreadName] = useState("Wczytywanie...")
 
   return (
     <div id="app">
@@ -30,13 +31,15 @@ function App() {
               case PageEnum.heroku_wait:
                 return <HerokuWait setPage={setPage} PageEnum={PageEnum} />
               case PageEnum.home:
-                return <Sections setPage={setPage} PageEnum={PageEnum} setItemId={setItemId} setItemName={setItemName} />
+                return <Sections setPage={setPage} PageEnum={PageEnum} setSectionName={setSectionName} />
               case PageEnum.register:
                 return <RegisterForm />
               case PageEnum.section:
-                return <Threads setPage={setPage} PageEnum={PageEnum} id={itemId} setItemId={setItemId} itemName={itemName} setItemName={setItemName} />
+                return <Threads setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
+                  setSectionName={setSectionName} setThreadName={setThreadName} />
               case PageEnum.thread:
-                return
+                return <Topics setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
+                  setSectionName={setSectionName} threadName={threadName} />
               case PageEnum.add_thread:
                 return
             }

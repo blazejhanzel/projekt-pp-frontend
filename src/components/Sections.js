@@ -16,8 +16,7 @@ function Sections(props) {
         }).then(res => res.json().then(data => {
             if (res.status == 200) {
                 props.setPage(props.PageEnum.section)
-                props.setItemName(data.name)
-                props.setItemId(id)
+                props.setSectionName(data.name)
             }
         }))
     }

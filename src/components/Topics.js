@@ -2,28 +2,16 @@ import React, { useState, useEffect } from 'react'
 import Item from './Item'
 import { getCookie } from '../libraries/Cookie'
 
-function Threads(props) {
-    const [threads, setThreads] = useState([])
+function Topics(props) {
+    const [topics, setTopics] = useState([])
 
     const closeSection = () => {
         props.setPage(props.PageEnum.home)
         props.setSectionName("Ładowanie...")
     }
 
-    const openThread = (id) => {
-        fetch('https://projekt-pp-backend.herokuapp.com/topic/' + id, {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getCookie("jwt")
-            }
-        }).then(res => res.json().then(data => {
-            if (res.status == 200) {
-                props.setPage(props.PageEnum.thread)
-                props.setThreadName(data.title)
-            }
-        }))
+    const closeThread = () => {
+        props.setPage(props.PageEnum.section)
     }
 
     useEffect(() => {
@@ -48,13 +36,18 @@ function Threads(props) {
     return (
         <div className="sections">
             <div onClick={closeSection}>
-                <Item title={props.sectionName}/>
+                <Item title={props.sectionName} />
             </div>
             <div className="threads">
-                {threads}
+                <div onClick={closeThread}>
+                    <Item title={props.threadName} />
+                </div>
+                <div className="topics">
+                    {topics}
+                </div>
             </div>
         </div>
     )
 }
 
-export default Threads
+export default Topics
