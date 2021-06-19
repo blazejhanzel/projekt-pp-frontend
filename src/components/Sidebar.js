@@ -2,11 +2,14 @@ import './Sidebar.css'
 import React, { useState, useEffect } from 'react'
 import { isExpired, decodeToken } from 'react-jwt'
 import { getCookie, setCookie } from '../libraries/Cookie'
+import PopularItem from './PopularItem'
+import Post from './Post'
 
 function Sidebar(props) {
     const [logged, setLogged] = useState(getCookie("jwt"))
     const [login_button_text, setLoginButtonText] = useState("Zaloguj")
     const username = ((logged) ? decodeToken(getCookie("jwt")).sub : "unknown")
+    const [threads, setThreads] = useState([])
 
     const logout = () => {
         setCookie("jwt", "", -1)
@@ -19,6 +22,50 @@ function Sidebar(props) {
 
     const openRegisterPage = () => {
         props.setPage(props.PageEnum.register)
+    }
+
+    const getPopularTopics = () => {
+        fetch("https://projekt-pp-backend.herokuapp.com/mostPopularTopics/0", {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            }
+        }).then(res => res.json().then(data => {
+            if (res.status == 200) {
+                let result = []
+                let count = 0
+                for (let thread of data) {
+                    count++
+                    result.push(
+                        <div onClick={() => openThread(thread.id)}>
+                            <PopularItem title={thread.title}   />
+                        </div>
+                        )
+                    if(count>4)
+                        break
+                }
+                setThreads(result)
+            }
+        }))
+    }
+    const openThread = (id) => {
+        fetch('https://projekt-pp-backend.herokuapp.com/topic/' + id, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            }
+        }).then(res => res.json().then(data => {
+            if (res.status == 200) {
+                props.setPage(props.PageEnum.thread)
+                props.setThreadName(data.title)
+                props.setThreadDescription(data.description)
+                props.setThreadAuthor(data.author.login)
+            }
+        }))
     }
 
     const signin = async () => {
@@ -67,12 +114,12 @@ function Sidebar(props) {
                 }
             })()}
             <input type="text" id="search_form" placeholder="wyszukaj" />
-            <button type="button" className="wide_button">Najpopularniejsze wątki</button>
-            <ul>
-                <li>Wątek 1</li>
-                <li>Wątek 2</li>
-                <li>Wątek 3</li>
-            </ul>
+            <button type="button" className="wide_button" onClick={getPopularTopics}>Najpopularniejsze tematy</button>
+            
+            <div className="popularThreads">
+                {threads}
+            </div>
+            
             <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
         </div>
     )
