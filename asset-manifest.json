@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/projekt-pp-frontend/static/css/main.ad7173db.chunk.css",
-    "main.js": "/projekt-pp-frontend/static/js/main.413a097e.chunk.js",
-    "main.js.map": "/projekt-pp-frontend/static/js/main.413a097e.chunk.js.map",
-    "runtime-main.js": "/projekt-pp-frontend/static/js/runtime-main.71e9c189.js",
-    "runtime-main.js.map": "/projekt-pp-frontend/static/js/runtime-main.71e9c189.js.map",
-    "static/js/2.73776dd8.chunk.js": "/projekt-pp-frontend/static/js/2.73776dd8.chunk.js",
-    "static/js/2.73776dd8.chunk.js.map": "/projekt-pp-frontend/static/js/2.73776dd8.chunk.js.map",
-    "static/js/3.43ec04db.chunk.js": "/projekt-pp-frontend/static/js/3.43ec04db.chunk.js",
-    "static/js/3.43ec04db.chunk.js.map": "/projekt-pp-frontend/static/js/3.43ec04db.chunk.js.map",
+    "main.css": "/projekt-pp-frontend/static/css/main.dfa0d9f9.chunk.css",
+    "main.js": "/projekt-pp-frontend/static/js/main.5dc91d15.chunk.js",
+    "main.js.map": "/projekt-pp-frontend/static/js/main.5dc91d15.chunk.js.map",
+    "runtime-main.js": "/projekt-pp-frontend/static/js/runtime-main.c38c7634.js",
+    "runtime-main.js.map": "/projekt-pp-frontend/static/js/runtime-main.c38c7634.js.map",
+    "static/js/2.c4be6f8e.chunk.js": "/projekt-pp-frontend/static/js/2.c4be6f8e.chunk.js",
+    "static/js/2.c4be6f8e.chunk.js.map": "/projekt-pp-frontend/static/js/2.c4be6f8e.chunk.js.map",
+    "static/js/3.727d036b.chunk.js": "/projekt-pp-frontend/static/js/3.727d036b.chunk.js",
+    "static/js/3.727d036b.chunk.js.map": "/projekt-pp-frontend/static/js/3.727d036b.chunk.js.map",
     "index.html": "/projekt-pp-frontend/index.html",
-    "static/css/main.ad7173db.chunk.css.map": "/projekt-pp-frontend/static/css/main.ad7173db.chunk.css.map",
-    "static/js/2.73776dd8.chunk.js.LICENSE.txt": "/projekt-pp-frontend/static/js/2.73776dd8.chunk.js.LICENSE.txt"
+    "static/css/main.dfa0d9f9.chunk.css.map": "/projekt-pp-frontend/static/css/main.dfa0d9f9.chunk.css.map",
+    "static/js/2.c4be6f8e.chunk.js.LICENSE.txt": "/projekt-pp-frontend/static/js/2.c4be6f8e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.71e9c189.js",
-    "static/js/2.73776dd8.chunk.js",
-    "static/css/main.ad7173db.chunk.css",
-    "static/js/main.413a097e.chunk.js"
+    "static/js/runtime-main.c38c7634.js",
+    "static/js/2.c4be6f8e.chunk.js",
+    "static/css/main.dfa0d9f9.chunk.css",
+    "static/js/main.5dc91d15.chunk.js"
   ]
 }
