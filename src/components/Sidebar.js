@@ -35,7 +35,7 @@ function Sidebar(props) {
         }).then(response => response.json().then(data => {
                 if (response.status === 200) {
                 setCookie("jwt", data.jwt, 10)
-                setLogged(true)
+                document.location.reload()
             } else {
                 alert(response.status)
             }
