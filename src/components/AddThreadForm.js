@@ -24,6 +24,9 @@ function AddThreadForm(props) {
         }))
     }, [])
 
+
+    
+
     return (
         <div id="addThreadForm">
             <select id="section" name="sections">
