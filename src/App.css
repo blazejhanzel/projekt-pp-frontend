@@ -25,6 +25,10 @@ button {
     color: #656565;
 }
 
+button:active{
+    transform: scale(0.98);
+}
+
 input, select, textarea {
     width: calc(100% - 60px);
     height: 54px;

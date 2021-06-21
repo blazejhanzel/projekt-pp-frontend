@@ -4,7 +4,12 @@ import { getCookie } from '../libraries/Cookie'
 
 function AddThreadForm(props) {
     const [sections, setSections] = useState([])
-
+    const [selectedValue, setSelectedValue] = useState([]);
+ 
+    const handleChange = e => {
+     setSelectedValue(e.value);
+    }
+   
     useEffect(() => {
         fetch("https://projekt-pp-backend.herokuapp.com/section", {
             method: 'GET',
@@ -24,16 +29,25 @@ function AddThreadForm(props) {
         }))
     }, [])
 
+    
+    const addTopic = () =>
+    {
+        let selectElement = document.getElementById("section")
+        alert(selectElement.selectedValue)
+    }
+
     return (
         <div id="addThreadForm">
             <select id="section" name="sections">
-                {sections}
+            {sections}
             </select>
             <input type="text" id="topic_filed" placeholder="Nazwa tematu" />
             <textarea></textarea>
-            <button type="button">Dodaj wątek</button>
+            <button type="button" onClick={addTopic}>Dodaj wątek</button>
         </div>
     )
 }
+
+
 
 export default AddThreadForm

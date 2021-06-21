@@ -25,7 +25,7 @@ function Sidebar(props) {
     }
 
     const getPopularTopics = () => {
-        fetch("https://projekt-pp-backend.herokuapp.com/mostPopularTopics/0", {
+        fetch("https://projekt-pp-backend.herokuapp.com/mostPopularTopics/1", {
             method: 'GET',
             credentials: 'same-origin',
             headers: {
@@ -51,21 +51,7 @@ function Sidebar(props) {
         }))
     }
     const openThread = (id) => {
-        fetch('https://projekt-pp-backend.herokuapp.com/topic/' + id, {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getCookie("jwt")
-            }
-        }).then(res => res.json().then(data => {
-            if (res.status == 200) {
-                props.setPage(props.PageEnum.thread)
-                props.setThreadName(data.title)
-                props.setThreadDescription(data.description)
-                props.setThreadAuthor(data.author.login)
-            }
-        }))
+        
     }
 
     const signin = async () => {
@@ -91,6 +77,10 @@ function Sidebar(props) {
                 alert(response.status)
             }
         }))
+    }
+
+    const returnToHomePage = () => {
+        props.setPage(props.PageEnum.home)
     }
 
     return (
@@ -121,6 +111,7 @@ function Sidebar(props) {
             </div>
             
             <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
+            <button type="button" className="wide_button" onClick={returnToHomePage}>Strona Główna</button>
         </div>
     )
 }
