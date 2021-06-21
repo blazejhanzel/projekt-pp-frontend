@@ -74,7 +74,8 @@ function Sidebar(props) {
                 setCookie("jwt", data.jwt, 10)
                 document.location.reload()
             } else {
-                alert(response.status)
+                setLoginButtonText(`Błąd ${response.status}`)
+                setTimeout(() => { setLoginButtonText('Zaloguj') }, 3000);
             }
         }))
     }

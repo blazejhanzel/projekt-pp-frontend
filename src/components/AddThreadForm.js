@@ -11,7 +11,7 @@ function AddThreadForm(props) {
     }
    
     useEffect(() => {
-        fetch("https://projekt-pp-backend.herokuapp.com/section", {
+        fetch("https://projekt-pp-backend.herokuapp.com/section/", {
             method: 'GET',
             credentials: 'same-origin',
             headers: {

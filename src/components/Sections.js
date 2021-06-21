@@ -8,7 +8,6 @@ function Sections(props) {
     const openSection = (id) => {
         fetch('https://projekt-pp-backend.herokuapp.com/section/' + id, {
             method: 'GET',
-            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + getCookie("jwt")
@@ -23,13 +22,8 @@ function Sections(props) {
     }
 
     useEffect(() => {
-        fetch("https://projekt-pp-backend.herokuapp.com/section", {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getCookie("jwt")
-            }
+        fetch("https://projekt-pp-backend.herokuapp.com/section/", {
+            method: 'GET'
         }).then(res => res.json().then(data => {
             if (res.status == 200) {
                 let result = []
