@@ -19,10 +19,12 @@ function App() {
   })
 
   const [page, setPage] = useState(PageEnum.heroku_wait)
+  const [sectionId, setSectionId] = useState(0)
   const [sectionName, setSectionName] = useState("Wczytywanie...")
   const [threadName, setThreadName] = useState("Wczytywanie...")
   const [threadDescription, setThreadDescription] = useState("Wczytywanie...")
   const [threadAuthor, setThreadAuthor] = useState("Wczytywanie...")
+  const [threadId, setThreadId] = useState(0)
 
   return (
     <div id="app">
@@ -34,17 +36,17 @@ function App() {
               case PageEnum.heroku_wait:
                 return <HerokuWait setPage={setPage} PageEnum={PageEnum} />
               case PageEnum.home:
-                return <Sections setPage={setPage} PageEnum={PageEnum} setSectionName={setSectionName} />
+                return <Sections setPage={setPage} PageEnum={PageEnum} setSectionId={setSectionId} setSectionName={setSectionName} />
               case PageEnum.register:
                 return <RegisterForm />
               case PageEnum.section:
-                return <Threads setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
+                return <Threads setPage={setPage} PageEnum={PageEnum} sectionName={sectionName} sectionId={sectionId}
                   setSectionName={setSectionName} setThreadName={setThreadName} setThreadDescription={setThreadDescription}
-                  setThreadAuthor={setThreadAuthor} />
+                  setThreadAuthor={setThreadAuthor} setThreadId={setThreadId} />
               case PageEnum.thread:
                 return <Posts setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
                   setSectionName={setSectionName} threadName={threadName} threadDescription={threadDescription}
-                  threadAuthor={threadAuthor} />
+                  threadAuthor={threadAuthor} threadId={threadId} />
               case PageEnum.add_thread:
                 return <AddThreadForm />
             }

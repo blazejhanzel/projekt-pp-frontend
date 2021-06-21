@@ -16,7 +16,7 @@ function Topics(props) {
     }
 
     useEffect(() => {
-        fetch("https://projekt-pp-backend.herokuapp.com/post", {
+        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${props.threadId}/post`, {
             method: 'GET',
             credentials: 'same-origin',
             headers: {

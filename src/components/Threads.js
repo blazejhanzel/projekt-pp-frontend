@@ -20,16 +20,17 @@ function Threads(props) {
             }
         }).then(res => res.json().then(data => {
             if (res.status == 200) {
+                props.setThreadId(id)
                 props.setPage(props.PageEnum.thread)
                 props.setThreadName(data.title)
                 props.setThreadDescription(data.description)
-                props.setThreadAuthor(data.author.login)
+                props.setThreadAuthor(data.authorId)
             }
         }))
     }
 
     useEffect(() => {
-        fetch("https://projekt-pp-backend.herokuapp.com/topic", {
+        fetch(`https://projekt-pp-backend.herokuapp.com/section/${props.sectionId}/topic`, {
             method: 'GET',
             credentials: 'same-origin',
             headers: {
@@ -42,7 +43,7 @@ function Threads(props) {
                 for (let thread of data) {
                     result.push(
                         <div onClick={() => openThread(thread.id)}>
-                            <Item title={thread.title} closeSection={closeSection} description={thread.description} author={thread.author.login} />
+                            <Item title={thread.title} closeSection={closeSection} description={thread.description} author={thread.authorId} />
                         </div>
                         )
                 }
