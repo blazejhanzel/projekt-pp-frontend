@@ -8,15 +8,52 @@ import Item from './Item'
 import OpenedThreadPage from './OpenedThreadPage'
 import { WindowsBalloon } from 'node-notifier'
 
+var role
+
 function Sidebar(props) {
     const [logged, setLogged] = useState(getCookie("jwt"))
     const [login_button_text, setLoginButtonText] = useState("Zaloguj")
     const username = ((logged) ? decodeToken(getCookie("jwt")).sub : "unknown")
     const [threads, setThreads] = useState([])
 
+    const deletePost = (id, threadId)=>{
+
+        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${threadId}/post/${id}`, {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            },
+        }).then(res =>{
+            if(!res.ok)
+            {
+                alert("błąd")
+            }
+            else
+            {
+            document.location.reload();
+            }
+        })
+
+    }
+
     useEffect(() => {
         props.setUserLogged(username)
         getPopularTopics()
+
+        fetch(`https://projekt-pp-backend.herokuapp.com/authorities`, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            }
+        }).then(res => res.json().then(data => {
+            if (res.status == 200) {
+                role=data[0].authority
+            }
+        }))
     })
 
     const logout = () => {
@@ -63,9 +100,9 @@ function Sidebar(props) {
     }
 
 
-    const openThread = (title, login , description, id) => {
+    const openThread = (title, login , description, threadId) => {
 
-        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${id}/post`, {
+        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${threadId}/post`, {
             method: 'GET',
             credentials: 'same-origin',
             headers: {
@@ -77,7 +114,7 @@ function Sidebar(props) {
                 let result = []
                 
                 for (let post of data) {
-                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} />)
+                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} onClick={() => {deletePost(post.id,threadId)}} />)
                 }
                 props.setPopularPosts(result)
             }
@@ -86,7 +123,7 @@ function Sidebar(props) {
         props.setThreadName(title)
         props.setThreadDescription(description)
         props.setThreadAuthor(login)
-        props.setThreadId(id)
+        props.setThreadId(threadId)
         props.setPage(props.PageEnum.opened_thread)
     }
 
@@ -114,6 +151,10 @@ function Sidebar(props) {
                 setTimeout(() => { setLoginButtonText('Zaloguj') }, 3000);
             }
         }))
+        
+        
+
+        
     }
 
     const returnToHomePage = () => {
@@ -160,7 +201,7 @@ function Sidebar(props) {
 
 {
             (() => {
-                if (username !== 'unknown') {
+                if (role==="ROLE_ADMIN") {
                     return (
                         <button type="button" className="wide_button" onClick={openAddSectionForm}>Dodaj sekcje</button>
                     )

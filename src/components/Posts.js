@@ -25,7 +25,7 @@ function Topics(props) {
             }
             else
             {
-            window.location.reload();
+            document.location.reload();
             }
         })
     }

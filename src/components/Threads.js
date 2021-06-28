@@ -24,7 +24,7 @@ function Threads(props) {
             }
             else
             {
-            window.location.reload();
+            document.location.reload();
             }
         })
     }

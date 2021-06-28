@@ -22,7 +22,7 @@ function Sections(props) {
             }
             else
             {
-            window.location.reload();
+            document.location.reload();
             }
         })
     }
