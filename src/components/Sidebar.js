@@ -11,6 +11,10 @@ function Sidebar(props) {
     const username = ((logged) ? decodeToken(getCookie("jwt")).sub : "unknown")
     const [threads, setThreads] = useState([])
 
+    useEffect(() => {
+        props.setUserLogged(username)
+    })
+
     const logout = () => {
         setCookie("jwt", "", -1)
         document.location.reload()
@@ -71,7 +75,7 @@ function Sidebar(props) {
             },
             body: JSON.stringify(data)
         }).then(response => response.json().then(data => {
-                if (response.status === 200) {
+            if (response.status === 200) {
                 setCookie("jwt", data.jwt, 10)
                 document.location.reload()
             } else {

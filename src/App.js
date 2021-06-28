@@ -25,10 +25,11 @@ function App() {
   const [threadDescription, setThreadDescription] = useState("Wczytywanie...")
   const [threadAuthor, setThreadAuthor] = useState("Wczytywanie...")
   const [threadId, setThreadId] = useState(0)
+  const [userLogged, setUserLogged] = useState('unknown')
 
   return (
     <div id="app">
-      <Sidebar page={page} setPage={setPage} PageEnum={PageEnum} />
+      <Sidebar page={page} setPage={setPage} PageEnum={PageEnum} setUserLogged={setUserLogged} />
       <div className="container">
         {        
           (() => {
@@ -46,7 +47,7 @@ function App() {
               case PageEnum.thread:
                 return <Posts setPage={setPage} PageEnum={PageEnum} sectionName={sectionName}
                   setSectionName={setSectionName} threadName={threadName} threadDescription={threadDescription}
-                  threadAuthor={threadAuthor} threadId={threadId} />
+                  threadAuthor={threadAuthor} threadId={threadId} userLogged={userLogged} />
               case PageEnum.add_thread:
                 return <AddThreadForm />
             }

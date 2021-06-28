@@ -12,4 +12,4 @@
 
 - [ ] Przycisk do usuwania postów
 
-- [ ] Dodawanie postów w wątkach (tylko dla zalogowanych)
+- [X] Dodawanie postów w wątkach (tylko dla zalogowanych)
