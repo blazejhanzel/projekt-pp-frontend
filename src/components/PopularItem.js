@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 
 function PopularItem(props) {
     return (
-        <div className="popularItem">
+        <div className="popularItem" onClick={props.onClick}>
             <div>{props.title}</div>
-        </div>
+                </div>
     )
 }
 

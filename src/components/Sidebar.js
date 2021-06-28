@@ -4,6 +4,9 @@ import { isExpired, decodeToken } from 'react-jwt'
 import { getCookie, setCookie } from '../libraries/Cookie'
 import PopularItem from './PopularItem'
 import Post from './Post'
+import Item from './Item'
+import OpenedThreadPage from './OpenedThreadPage'
+import { WindowsBalloon } from 'node-notifier'
 
 function Sidebar(props) {
     const [logged, setLogged] = useState(getCookie("jwt"))
@@ -24,6 +27,10 @@ function Sidebar(props) {
         props.setPage(props.PageEnum.add_thread)
     }
 
+    const openAddSectionForm = () => {
+        props.setPage(props.PageEnum.add_section)
+    }
+
     const openRegisterPage = () => {
         props.setPage(props.PageEnum.register)
     }
@@ -42,8 +49,8 @@ function Sidebar(props) {
                 for (let thread of data) {
                     count++
                     result.push(
-                        <div onClick={() => openThread(thread.id)}>
-                            <PopularItem title={thread.title}   />
+                        <div >
+                            <PopularItem title={thread.title} onClick={()=>openThread(thread.title, thread.login, thread.description, thread.id)}  />
                         </div>
                         )
                     if(count>4)
@@ -54,8 +61,32 @@ function Sidebar(props) {
         }))
     }
 
-    const openThread = (id) => {
-        
+
+    const openThread = (title, login , description, id) => {
+
+        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${id}/post`, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            }
+        }).then(res => res.json().then(data => {
+            if (res.status == 200) {
+                let result = []
+                
+                for (let post of data) {
+                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} />)
+                }
+                props.setPopularPosts(result)
+            }
+        }))
+
+        props.setThreadName(title)
+        props.setThreadDescription(description)
+        props.setThreadAuthor(login)
+        props.setThreadId(id)
+        props.setPage(props.PageEnum.opened_thread)
     }
 
     const signin = async () => {
@@ -121,6 +152,16 @@ function Sidebar(props) {
                 if (username !== 'unknown') {
                     return (
                         <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
+                    )
+                }
+            })()
+            }
+
+{
+            (() => {
+                if (username !== 'unknown') {
+                    return (
+                        <button type="button" className="wide_button" onClick={openAddSectionForm}>Dodaj sekcje</button>
                     )
                 }
             })()
