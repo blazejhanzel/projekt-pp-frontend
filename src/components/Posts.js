@@ -6,6 +6,10 @@ import { getCookie } from '../libraries/Cookie'
 function Topics(props) {
     const [topics, setTopics] = useState([])
 
+    const addPost = () => {
+
+    }
+
     const closeSection = () => {
         props.setPage(props.PageEnum.home)
         props.setSectionName("Ładowanie...")
@@ -46,6 +50,10 @@ function Topics(props) {
                 <div className="topics">
                     {topics}
                 </div>
+            </div>
+            <div id="addThreadForm">
+                <textarea id="description"></textarea>
+                <button type="button" onClick={addPost}>Dodaj odpowiedź</button>
             </div>
         </div>
     )
