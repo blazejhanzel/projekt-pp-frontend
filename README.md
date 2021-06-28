@@ -1,6 +1,6 @@
 # Lista zadań
 
-- [ ] Naprawić błąd 403 przy tworzeniu nowego konta
+- [X] Naprawić błąd 403 przy tworzeniu nowego konta
 
 - [X] Dodać funkcję dodawania wątków (tylko dla zalogowanych)
 

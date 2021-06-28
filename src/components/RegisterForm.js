@@ -11,7 +11,7 @@ function RegisterForm() {
         }
 
         
-        fetch("https://projekt-pp-backend.herokuapp.com/user", {
+        fetch("https://projekt-pp-backend.herokuapp.com/register", {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
