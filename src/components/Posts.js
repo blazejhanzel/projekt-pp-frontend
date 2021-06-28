@@ -4,12 +4,31 @@ import Post from './Post'
 import { getCookie } from '../libraries/Cookie'
 import { decodeToken } from 'react-jwt'
 
+var role
+
 function Topics(props) {
     const [topics, setTopics] = useState([])
 
     const deletePost = (id) => {
-        alert("usuwam wariata z posts o id: " + id + "od " +  decodeToken(getCookie("jwt")).sub)
-        }
+
+        fetch(`https://projekt-pp-backend.herokuapp.com/topic/${props.threadId}/post/${id}`, {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            },
+        }).then(res =>{
+            if(!res.ok)
+            {
+                alert("błąd")
+            }
+            else
+            {
+            window.location.reload();
+            }
+        })
+    }
 
     const addPost = () => {
         let json = {
@@ -44,6 +63,20 @@ function Topics(props) {
     }
 
     useEffect(() => {
+
+        fetch(`https://projekt-pp-backend.herokuapp.com/authorities`, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie("jwt")
+            }
+        }).then(res => res.json().then(data => {
+            if (res.status == 200) {
+                role=data[0].authority
+            }
+        }))
+
         fetch(`https://projekt-pp-backend.herokuapp.com/topic/${props.threadId}/post`, {
             method: 'GET',
             credentials: 'same-origin',
@@ -55,7 +88,7 @@ function Topics(props) {
             if (res.status == 200) {
                 let result = []
                 for (let post of data) {
-                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} onClick={() => {deletePost(post.id)}} />)
+                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} onClick={() => {deletePost(post.id)}} postRole={role} />)
                 }
                 setTopics(result)
             }

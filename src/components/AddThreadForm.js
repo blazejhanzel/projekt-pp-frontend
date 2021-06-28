@@ -52,6 +52,7 @@ function AddThreadForm(props) {
             }).then(res => res.json().then(data => {
                 if (res.status == 200) {
                     alert("Temat dodano pomyślnie!")
+                    window.location.reload()
                 } else {
                     alert(res.status)
                 }

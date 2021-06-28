@@ -6,6 +6,8 @@ import { decodeToken } from 'react-jwt'
 function Post(props) {
     const getDate = () => {
         return props.createDate.slice(0, 19).replace('T', ' ')
+
+        
     }
 
 
@@ -13,10 +15,13 @@ function Post(props) {
         <div className="post">
             {
             (() => {
-                if (props.author === decodeToken(getCookie("jwt")).sub) {
+                if(decodeToken(getCookie("jwt"))!==null)
+                {
+                if ((props.author === decodeToken(getCookie("jwt")).sub)||(props.postRole==="ROLE_ADMIN")) {
                     return (
                         <button className="small-button" onClick={props.onClick}>Usuń</button>
                     )
+                }
                 }
             })()
             }
