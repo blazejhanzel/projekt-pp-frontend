@@ -13,6 +13,7 @@ function Sidebar(props) {
 
     useEffect(() => {
         props.setUserLogged(username)
+        getPopularTopics()
     })
 
     const logout = () => {
@@ -120,7 +121,7 @@ function Sidebar(props) {
             (() => {
                 if (username !== 'unknown') {
                     return (
-                        <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
+                        <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj temat</button>
                     )
                 }
             })()

@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Item from './Item'
 import Post from './Post'
 import { getCookie } from '../libraries/Cookie'
+import { decodeToken } from 'react-jwt'
 
 function Topics(props) {
     const [topics, setTopics] = useState([])
+
+    const deletePost = (id) => {
+        alert("usuwam wariata z posts o id: " + id + "od " +  decodeToken(getCookie("jwt")).sub)
+        }
 
     const addPost = () => {
         let json = {
@@ -50,7 +55,7 @@ function Topics(props) {
             if (res.status == 200) {
                 let result = []
                 for (let post of data) {
-                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} />)
+                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} onClick={() => {deletePost(post.id)}} />)
                 }
                 setTopics(result)
             }

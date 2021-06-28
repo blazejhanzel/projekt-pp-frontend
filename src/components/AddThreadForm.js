@@ -51,7 +51,7 @@ function AddThreadForm(props) {
                 body: JSON.stringify(json)
             }).then(res => res.json().then(data => {
                 if (res.status == 200) {
-                    alert("Wątek dodano pomyślnie!")
+                    alert("Temat dodano pomyślnie!")
                 } else {
                     alert(res.status)
                 }
@@ -67,7 +67,7 @@ function AddThreadForm(props) {
             </select>
             <input type="text" id="topic_field" placeholder="Nazwa tematu" />
             <textarea id="description"></textarea>
-            <button type="button" onClick={addTopic}>Dodaj wątek</button>
+            <button type="button" onClick={addTopic}>Dodaj temat</button>
         </div>
     )
 }
