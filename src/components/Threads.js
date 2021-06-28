@@ -11,7 +11,7 @@ function Threads(props) {
     }
 
     const openThread = (id) => {
-        fetch('https://projekt-pp-backend.herokuapp.com/topic/' + id, {
+        fetch(`https://projekt-pp-backend.herokuapp.com/section/${props.sectionId}/topic/${id}`, {
             method: 'GET',
             credentials: 'same-origin',
             headers: {

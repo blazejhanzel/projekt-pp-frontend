@@ -4,9 +4,9 @@
 
 - [ ] Dodać funkcję dodawania wątków (tylko dla zalogowanych)
 
-- [ ] Zaprogramować wyszukiwarkę
+- ~~[ ] Zaprogramować wyszukiwarkę~~
 
-- [ ] Po kliknięciu w wątek musi otwierać się lista postów
+- [X] Po kliknięciu w wątek musi otwierać się lista postów
 
 - [ ] Przycisk do usuwania wątków
 

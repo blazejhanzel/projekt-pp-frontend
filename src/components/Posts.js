@@ -27,7 +27,7 @@ function Topics(props) {
             if (res.status == 200) {
                 let result = []
                 for (let post of data) {
-                    result.push(<Post title={post.text} author={post.author.login} createDate={post.createDate} />)
+                    result.push(<Post title={post.text} author={post.login} createDate={post.createDate} />)
                 }
                 setTopics(result)
             }
