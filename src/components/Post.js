@@ -8,6 +8,7 @@ function Post(props) {
 
     return (
         <div className="post">
+            {/* <button className="small-button" onClick={() => alert("hello!")}>Usuń</button> */}
             <div className="username">
                 @{props.author}
             </div>

@@ -28,7 +28,7 @@ function Sections(props) {
             if (res.status == 200) {
                 let result = []
                 for (let section of data) {
-                    result.push(<div onClick={() => openSection(section.id)}><Item title={section.name} /></div>)
+                    result.push(<div onClick={() => openSection(section.id)}><Item title={section.name} type="section" /></div>)
                 }
                 setSections(result)
             }

@@ -60,11 +60,11 @@ function Topics(props) {
     return (
         <div className="sections">
             <div onClick={closeSection}>
-                <Item title={props.sectionName} />
+                <Item title={props.sectionName} type="section" />
             </div>
             <div className="threads">
                 <div onClick={closeThread}>
-                    <Item title={props.threadName} description={props.threadDescription} author={props.threadAuthor} />
+                    <Item title={props.threadName} description={props.threadDescription} author={props.threadAuthor} type="topic" />
                 </div>
                 <div className="topics">
                     {topics}

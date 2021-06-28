@@ -33,8 +33,7 @@ function Sidebar(props) {
             method: 'GET',
             credentials: 'same-origin',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getCookie("jwt")
+                'Content-Type': 'application/json'
             }
         }).then(res => res.json().then(data => {
             if (res.status == 200) {
