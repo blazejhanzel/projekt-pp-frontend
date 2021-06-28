@@ -4,12 +4,8 @@ import { getCookie } from '../libraries/Cookie'
 
 function AddThreadForm(props) {
     const [sections, setSections] = useState([])
-    const [selectedValue, setSelectedValue] = useState([]);
+    const [selectedValue, setSelectedValue] = useState(null);
  
-    const handleChange = e => {
-     setSelectedValue(e.value);
-    }
-   
     useEffect(() => {
         fetch("https://projekt-pp-backend.herokuapp.com/section/", {
             method: 'GET',
@@ -29,20 +25,48 @@ function AddThreadForm(props) {
         }))
     }, [])
 
+    const handleChange = (e) => {
+        setSelectedValue(e.target.value)
+    }
     
-    const addTopic = () =>
-    {
-        let selectElement = document.getElementById("section")
-        alert(selectElement.selectedValue)
+    const addTopic = () => {
+        if (selectedValue == null) return
+
+        let post_name = document.getElementById("topic_field").value
+        let post_description = document.getElementById("description").value
+
+        if (post_name && post_description) {
+            let json = {
+                "title": post_name,
+                "description": post_description
+            }
+
+            fetch(`https://projekt-pp-backend.herokuapp.com/section/${selectedValue}/topic`, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getCookie("jwt")
+                },
+                body: JSON.stringify(json)
+            }).then(res => res.json().then(data => {
+                if (res.status == 200) {
+                    alert("Wątek dodano pomyślnie!")
+                } else {
+                    alert(res.status)
+                }
+            }))
+        }
     }
 
     return (
         <div id="addThreadForm">
-            <select id="section" name="sections">
-            {sections}
+            <select id="section" name="sections" onChange={handleChange}>
+                <option value="null">Wybierz sekcję</option>
+                {sections}
             </select>
-            <input type="text" id="topic_filed" placeholder="Nazwa tematu" />
-            <textarea></textarea>
+            <input type="text" id="topic_field" placeholder="Nazwa tematu" />
+            <textarea id="description"></textarea>
             <button type="button" onClick={addTopic}>Dodaj wątek</button>
         </div>
     )

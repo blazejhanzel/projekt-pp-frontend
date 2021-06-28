@@ -50,6 +50,7 @@ function Sidebar(props) {
             }
         }))
     }
+
     const openThread = (id) => {
         
     }
@@ -104,14 +105,23 @@ function Sidebar(props) {
                     )
                 }
             })()}
-            <input type="text" id="search_form" placeholder="wyszukaj" />
-            <button type="button" className="wide_button" onClick={getPopularTopics}>Najpopularniejsze tematy</button>
+            {/* <input type="text" id="search_form" placeholder="wyszukaj" /> */}
+            <div style={{marginTop: 100 + 'px', height: 1 + 'px'}}></div>
+            <button style={{marginTop: 100 + 'px!important'}} type="button" className="wide_button" onClick={getPopularTopics}>Najpopularniejsze tematy</button>
             
             <div className="popularThreads">
                 {threads}
             </div>
             
-            <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
+            {
+            (() => {
+                if (username !== 'unknown') {
+                    return (
+                        <button type="button" className="wide_button" onClick={openAddThreadForm}>Dodaj wątek</button>
+                    )
+                }
+            })()
+            }
             <button type="button" className="wide_button" onClick={returnToHomePage}>Strona Główna</button>
         </div>
     )

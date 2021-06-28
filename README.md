@@ -2,7 +2,7 @@
 
 - [ ] Naprawić błąd 403 przy tworzeniu nowego konta
 
-- [ ] Dodać funkcję dodawania wątków (tylko dla zalogowanych)
+- [X] Dodać funkcję dodawania wątków (tylko dla zalogowanych)
 
 - ~~[ ] Zaprogramować wyszukiwarkę~~
 
